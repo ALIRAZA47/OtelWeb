@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Otel-Web</title>
+  <link rel="stylesheet" href="{{ url_for('static',filename='cardStyles.css') }}" />
+  <link rel="stylesheet" href="{{ url_for('static',filename='navStyles.css') }}" />
+
+ <!-- Latest compiled and minified CSS -->
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+ <!-- jQuery library -->
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+ <!-- Latest compiled JavaScript -->
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link
+   rel="stylesheet"
+   href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+   integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog=="
+   crossorigin="anonymous"
+  />
+  <!-- Styles for Modal Button -->
+ 
+
+  <!-- Styles for Modal end -->
+
+  <!-- Navbar here -->
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">Otel</a>
+      </div>
+  
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="#">Home</a></li>
+          <li><a href="{{ url_for('profile') }}">Profile</a></li>
+          <li><a href="https://www.linkedin.com/in/ali-raza-khan-6830461bb/">Follow Us</a></li>
+
+          
+        </ul>
+        <form action="/" >
+          <button type="submit" style="margin-top: 8px  ;" class="btn navbar-right btn-danger">Logout<span style="margin-left: 8px;" class="glyphicon glyphicon-log-out"></span></button>
+        </form>
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  </nav>
+<!-- End of navbar -->
+ </head>
+ <body>
+    <div class="container">
+    <!-- {% set argsa = [] %} -->
+  {% for row in rooms_data %}
+  {% if row != None %}
+        <!-- Card -->
+  <div class="a-box">
+    <div class="img-container">
+        <div class="img-inner">
+            <div class="inner-skew">
+            <img src="{{img}}">
+            </div>
+        </div>
+    </div>
+    <div class="text-container">
+        <h2>{{ row['roomNumber'] }}</h2>
+        <h3>
+            {{ row["currentStatus"] }}
+        </h3>
+        <h5>Total Rooms: {{ row["roomFare"] }}</h5>
+        <h6>Total Rooms: {{ row["roomDetail"] }}</h6>
+
+        {% if ( (row['currentStatus'] == "Booked") or (row["currentStatus"] == "Pending") )  %}
+        <button class="btn btn-success" type="submit" name="bookRoom"  disabled="disabled" value= "{{row['roomNumber']}}" ><span class="glyphicon glyphicon-arrow-right"></span> Room Room</button>
+        {% else %}
+        {% set args =[] %}
+        {% set args = args+[hotelName] %}
+        {% set args = args+[row['roomNumber']] %}
+
+
+        
+        <form action="/bookRoom" method="POST" >
+          <button class="btn btn-success" type="submit" name="bookRoom" value= "{{args}}" > Room Room <span style="margin-left: 8px;" class="glyphicon glyphicon-arrow-right"></span></button>
+        </form>
+        {% endif %}
+    </div>
+</div>
+<!-- End Card -->
+  {% endif %}
+  {% endfor %}
+
+ </body>
+</html>

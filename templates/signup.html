@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="{{ url_for('static',filename='loginCSS.css') }}">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Signup-Otel</title>
+</head>
+<body>
+  
+  <!-- Login pages -->
+  <div class="wrapper fadeInDown">
+    
+    <div id="formContent">
+      {%if signup_error%}
+      <div class="alert alert-danger">
+        <strong>{{signup_error}}</strong>
+      </div>
+      {%endif%}
+
+      {%if signup_success%}
+      <div class="alert alert-success">
+        <strong>{{signup_success}}</strong>
+      </div>
+      {%endif%}
+      <!-- Tabs Titles -->
+      <h2  class="inactive underlineHover" > <a style="color: black; font-weight:bold;" href="{{ url_for('index') }}">Log in</a>  </h2>
+      <h2 class="active">Sign up</h2>
+  
+      <!-- Icon -->
+      <div class="fadeIn first">
+        <img src="{{ url_for('static',filename='signup.svg') }}" id="icon" alt="User Icon" />
+      </div>
+  
+      <!-- Login Form -->
+      <form class="" action = "{{ url_for('signup') }}" method = "POST">
+
+        <input type="text" id="login" class="fadeIn second" name="name" placeholder="Name">
+        <input type="text" id="login" class="fadeIn second" name="email" placeholder="Email">
+
+        <input type="text" id="password" class="fadeIn third" name="password" placeholder="Password">
+        <input type="text" id="cnofirmpassword" class="fadeIn third" name="confirmpassword" placeholder="Confirm Password">
+        <input type="text" id="phone" class="fadeIn third" name="phone" placeholder="Phone No">
+        <input type="text" id="cnic" class="fadeIn third" name="cnic" placeholder="CNIC">
+        <input type="text" id="address" class="fadeIn third" name="address" placeholder="Address">
+        
+        <input type="submit" class="fadeIn fourth" value="Create Account">
+
+      </form>
+  
+      <!-- Remind Passowrd -->
+      <div id="formFooter">
+        <a class="underlineHover" href="#">Made by Ali Raza Khan</a>
+      </div>
+  
+    </div>
+  </div>
+
+</body>
+</html>

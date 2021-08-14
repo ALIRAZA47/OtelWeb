@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="{{ url_for('static',filename='loginCSS.css') }}">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login-Otel</title>
+</head>
+<body>
+  
+  <!-- Login pages -->
+  <div class="wrapper fadeInDown">
+    
+    <div id="formContent">
+      {%if login_error%}
+      <div class="alert alert-danger">
+        <strong>{{login_error}}</strong>
+      </div>
+      {%endif%}
+      <!-- Tabs Titles -->
+      <h2 class="active"> Log In </h2>
+      <h2 onclick="" class="inactive underlineHover"><a style="color: black; font-weight:bold;" href="{{ url_for('signup') }}">Sign up</a> </h2>
+  
+      <!-- Icon -->
+      <div class="fadeIn first">
+        <img src="{{ url_for('static',filename='97.svg') }}" id="icon" alt="User Icon" />
+      </div>
+  
+      <!-- Login Form -->
+      <form class="form-group" action = "{{ url_for('index') }}" method = "POST">
+        <input type="text" id="login" class="fadeIn second" name="email" placeholder="Email">
+        <input type="text" id="password" class="fadeIn third" name="password" placeholder="Password">
+        <input type="submit" class="fadeIn fourth" value="Log In">
+
+      </form>
+  
+      <!-- Remind Passowrd -->
+      <div id="formFooter">
+        <a class="underlineHover" href="#">Made by Ali Raza Khan</a>
+      </div>
+  
+    </div>
+  </div>
+
+</body>
+</html>
